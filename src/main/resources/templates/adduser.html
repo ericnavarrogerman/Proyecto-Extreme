@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head th:replace="/layout/plantilla::head">
+        <title>Agregar Usuario</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+
+    <header th:replace="layout/plantilla :: header"></header>
+
+       <section th:fragment="agregarUsuario">
+           <form th:action="@{/guardar}" th:object="${usuario}"
+                 method="post" class="was-validated">
+               <div class="modal-body">
+
+                   <div class="form-group">
+                       <label for="cedula" th:text="#{usuario.cedula}">cedula</label>
+                       <input type="number" class="form-control" name="cedula" required="true">
+                   </div>
+
+                   <div class="form-group">
+                       <label for="nombres" th:text="#{usuario.nombre}">Nombre</label>
+                       <input type="text" class="form-control" name="nombres" required="true">
+                   </div>
+                   <div class="form-group">
+                       <label for="apellidos" th:text="#{usuario.apellido}">Apelliudo</label>
+                       <input type="text" class="form-control" name="apellidos" required="true">
+                   </div>
+                   <div class="form-group">
+                       <label for="username" th:text="#{usuario.username}">username</label>
+                       <input type="text" class="form-control" name="username" required="true">
+                   </div>
+                   <div class="form-group">
+                       <label for="password" th:text="#{usuario.password}">password</label>
+                       <input type="password" class="form-control" name="password" required="true" step="any">
+                   </div>
+               </div>
+               <div class="modal-footer">
+                   <button class="btn btn-primary" type="submit" th:text="#{accion.guardar}">Guardar</button>
+               </div>
+           </form>
+
+        </section>
+
+    <footer th:replace="layout/plantilla :: footer"></footer>
+    </body>
+</html>

@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
 import lombok.Data;
 
 @Entity
@@ -18,6 +20,9 @@ public class Usuario implements Serializable{
 
     @NotEmpty
     private String username;
+
+
+    private Long cedula;
 
     @NotEmpty
     private String nombres;

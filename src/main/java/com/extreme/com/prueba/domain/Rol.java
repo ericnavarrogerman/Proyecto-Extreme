@@ -16,5 +16,5 @@ public class Rol implements Serializable{
     private Long idRol;
 
     @NotEmpty
-    private String nombre;
+    private String rol;
 }
