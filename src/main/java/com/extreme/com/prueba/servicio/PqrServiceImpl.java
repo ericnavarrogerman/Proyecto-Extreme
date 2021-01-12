@@ -14,7 +14,7 @@ public class PqrServiceImpl implements PqrService{
     private PqrDao pqrDao;
 
     @Override
-    public List<Pqr> getAllUsers() {
+    public List<Pqr> getAllPQR() {
         return pqrDao.findAll();
     }
 

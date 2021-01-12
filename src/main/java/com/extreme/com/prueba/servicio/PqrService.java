@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface PqrService {
 
-    public List<Pqr> getAllUsers();
+    public List<Pqr> getAllPQR();
     public void save(Pqr pqr);
     public void delete(Pqr pqr);
     public Pqr findUser(Pqr pqr);

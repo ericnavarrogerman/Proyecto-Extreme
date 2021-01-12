@@ -1,6 +1,8 @@
 package com.extreme.com.prueba.web;
 
+import com.extreme.com.prueba.domain.Pqr;
 import com.extreme.com.prueba.domain.Usuario;
+import com.extreme.com.prueba.servicio.PqrService;
 import com.extreme.com.prueba.servicio.UsuarioService;
 import com.extreme.com.prueba.util.EncriptarPassword;
 import lombok.extern.slf4j.Slf4j;
@@ -21,9 +23,17 @@ public class WebController {
 
     @Autowired
     private UsuarioService usuarioService;
+    @Autowired
+    private PqrService pqrService;
 
     @GetMapping("/")
-    public String inicio() {
+    public String inicio( Model model,@AuthenticationPrincipal User user) {
+
+        var pqrs =pqrService.getAllPQR();
+
+        model.addAttribute("totalPQR",pqrs.size());
+        model.addAttribute("pqrs",pqrs);
+
         return "index";
     }
 
@@ -34,6 +44,19 @@ public class WebController {
             return "index";
         }
         usuarioService.save(EncriptarPassword.encriptarPassword(usuario));
+        return "redirect:/";
+    }
+
+    @PostMapping("/crearPQR")
+    public String newPqr(@Valid Pqr pqr , Errors errores){
+
+        System.out.println(errores);
+        System.out.println(pqr);
+        if(errores.hasErrors()){
+            return "addpqr";
+        }
+        pqrService.save(pqr);
+
         return "redirect:/";
     }
 

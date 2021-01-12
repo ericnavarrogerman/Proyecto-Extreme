@@ -3,10 +3,14 @@ package com.extreme.com.prueba.domain;
 import lombok.Data;
 
 
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
+import java.time.LocalDate;
+
 import java.util.Calendar;
+import java.util.Date;
 
 @Entity
 @Data
@@ -25,18 +29,19 @@ private String tipo;
 @NotEmpty
 private String asunto;
 
-@NotEmpty
+
 private Long idUsuario;
 
 @NotEmpty
 private String estado;
 
-@NotEmpty
-@Temporal(TemporalType.TIMESTAMP)
-private Calendar fechacreacion;
 
-@NotEmpty
 @Temporal(TemporalType.TIMESTAMP)
-private Calendar fechalimite;
+private Date fechacreacion;
+
+
+@Temporal(TemporalType.TIMESTAMP)
+private Date fechalimite;
+
 
 }

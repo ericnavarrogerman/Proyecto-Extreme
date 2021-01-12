@@ -7,38 +7,54 @@
         <meta charset="UTF-8"/>
     </head>
     <body>
-        <section th:fragment="listadoClientes" id="clientes">
+        <section th:fragment="listaPQR" id="pqrs">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-9">
+                    <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>[[#{persona.titulo-lista}]]</h4>
+                                <h4>[[#{pqr.titulo.lista}]]</h4>
                             </div>
-                            <div th:if="${personas != null and !personas.empty}">
+                            <a type="button" class="btn btn-warning btn-sm" th:href="@{/addpqr}">Crear nueva PQR</a>
+
+                            <div th:if="${pqrs != null and !pqrs.empty}">
                                 <table class="table table-stryped">
                                     <thead class="thead-dark">
                                         <tr>
-                                            <th>#</th>
-                                            <th th:text="#{usuario.nombre}">Nombre</th>
-                                            <th th:text="#{usuario.saldo}">Saldo</th>
+                                            <th th:text="#{pqr.numeral}">id</th>
+                                            <th th:text="#{pqr.tipo}">Tipo de PQR</th>
+                                            <th th:text="#{pqr.asunto}">asunto</th>
+                                            <th th:text="#{pqr.id.usuario}">id</th>
+                                            <th th:text="#{pqr.estado}">estado</th>
+                                            <th th:text="#{pqr.fecha.creacion}">fecha</th>
+                                            <th th:text="#{pqr.fecha.limite}">limit</th>
+                                            <th th:text="#{pqr.editar}">Editar</th>
+                                            <th th:text="#{pqr.eliminar}">Eliminar</th>
+
                                             <th></th>
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr th:each="persona, contador : ${personas}">
-                                            <td>[[${contador.count}]]</td>
-                                            <td>[[${persona.nombre} + ' ' + ${persona.apellido}]]</td>
-                                            <td>[[${new java.text.DecimalFormat('$#,##0.00').format(persona.saldo)}]]</td>
+                                        <tr th:each="pqr : ${pqrs}">
+
+                                            <td>[[${pqr.idPqr}]]</td>
+                                            <td>[[${pqr.tipo}]]</td>
+                                            <td>[[${pqr.asunto}]]</td>
+                                            <td>[[${pqr.idUsuario}]]</td>
+                                            <td>[[${pqr.estado}]]</td>
+                                            <td >[[${pqr.fechacreacion}]]</td>
+                                            <td>[[${pqr.fechalimite}]]</td>
+
+
                                             <td>
-                                                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/editar/} + ${persona.idPersona}"
+                                                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/editar/} + ${pqr.idPqr}"
                                                    class="btn btn-secondary">
                                                     <i class="fas fa-angle-double-right"></i> [[#{accion.editar}]]
                                                 </a>
                                             </td>
                                             <td>
-                                                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/eliminar(idPersona=${persona.idPersona})}"
+                                                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/eliminar(idPersona=${pqr.idPqr})}"
                                                    class="btn btn-dark">
                                                     <i class="fas fa-angle-double-right"></i> [[#{accion.eliminar}]]
                                                 </a>
@@ -47,27 +63,18 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="text-center p-2" th:if="${personas == null or personas.empty}">
-                                <span th:text="#{persona.lista-vacia}">Lista vacía</span>
+                            <div class="text-center p-2" th:if="${pqrs == null or pqrs.empty}">
+                                <span th:text="#{pqr.lista.vacia}">Lista vacía</span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-md-3">
-                        <div class="card text-center bg-danger text-white mb-3">
-                            <div class="card-body">
-                                <h3 th:text="#{persona.saldoTotal}">Saldo total</h3>
-                                <h4 class="display-4">
-                                    [[${new java.text.DecimalFormat('$#,##0.00').format(saldoTotal)}]]
-                                </h4>
-                            </div>
-                        </div>
 
-                        <div class="card text-center bg-success text-white mb-3">
+                        <div class="card text-center bg-success text-white mb-5">
                             <div class="card-body">
-                                <h3 th:text="#{persona.totalClientes}">Total Clientes</h3>
-                                <h4 class="display-4">
-                                    <i class="fas fa-users"></i> [[${totalClientes}]]
+                                <h3 th:text="#{pqr.total.pqrs}">Total pqrs</h3>
+                                <h4 class="display-1">
+                                    <i class="fas fa-users"></i> [[${totalPQR}]]
                                 </h4>
                             </div>
                         </div>

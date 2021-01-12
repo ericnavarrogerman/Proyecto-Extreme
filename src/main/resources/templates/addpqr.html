@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="/layout/plantilla::head">
+    <title>Agregar Usuario</title>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+
+<header th:replace="layout/plantilla :: header"></header>
+
+<section >
+    <form th:action="@{/crearPQR}" th:object="${Pqr}"
+          method="post" class="was-validated">
+        <div class="modal-body">
+
+            <div class="form-group">
+                <label for="idUsuario" th:text="#{pqr.id.usuario}">idusuario</label>
+                <input type="number" class="form-control" name="idUsuario" required="true">
+            </div>
+
+
+            <label for="tipo" th:text="#{pqr.tipo}">tipo</label>
+            <select class="form-group" name="tipo">
+                <!-- Opciones de la lista -->
+                <option value="Peticion" selected>[[#{pqr.tipo.peticion}]]</option><!-- Opción por defecto -->
+                <option value="Queja" >[[#{pqr.tipo.queja}]]</option>
+                <option value="Reclamo">[[#{pqr.tipo.reclamo}]]</option>
+            </select>
+
+
+
+            <div class="form-group">
+                <label for="asunto" th:text="#{pqr.asunto}">asunto</label>
+                <input type="text" class="form-control" name="asunto" required="true">
+            </div>
+
+
+            <label for="estado" th:text="#{pqr.estado}">estado</label>
+            <select class="form-group" name="estado">
+                <!-- Opciones de la lista -->
+                <option value="Nuevo" selected>[[#{pqr.estado.nuevo}]]</option><!-- Opción por defecto -->
+                <option value="En Ejecucion" >[[#{pqr.estado.ejecucion}]]</option>
+                <option value="Cerrado">[[#{pqr.estado.cerrado}]]</option>
+            </select>
+
+
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="submit" th:text="#{accion.guardar}">Guardar</button>
+        </div>
+    </form>
+
+</section>
+
+<footer th:replace="layout/plantilla :: footer"></footer>
+</body>
+</html>

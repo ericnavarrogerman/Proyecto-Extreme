@@ -32,6 +32,7 @@
                                     <i class="fas fa-user"></i>
                                     <span th:text="#{barra.bienvenido}">Bievenido:</span>
                                     <span sec:authentication="name">Usuario</span>
+                                    <span sec:authentication="principal.authorities">roles</span>
                                 </a>
                             </li>
                             <li class="nav-item">
